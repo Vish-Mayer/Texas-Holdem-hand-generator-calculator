@@ -22,8 +22,14 @@ describe("PokerHand", () => {
   });
 
   describe("pokerhand.straight", () => {
-    it("returns true if the hand contains a flush", () => {
+    it("returns true if the hand contains a straight", () => {
       let hand = "AH KH QH JH TH";
+      let pokerhand = new PokerHand(hand);
+      expect(pokerhand.straight).toEqual(true);
+    });
+
+    it("returns true if the hand contains a straight", () => {
+      let hand = "TH 8H 9H 6H 7H";
       let pokerhand = new PokerHand(hand);
       expect(pokerhand.straight).toEqual(true);
     });
