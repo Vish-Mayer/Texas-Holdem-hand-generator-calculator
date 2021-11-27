@@ -9,8 +9,10 @@ export class PokerHand {
     const suits = cards.map(card => card[1]).sort();
     this.flush = suits[0] === suits[4];
     const first = faces[0].charCodeAt(0);
-    this.straight = faces.every(
-      (f, index) => f.charCodeAt(0) - first === index
-    );
+    const lowStraight = faces.join("") === "AJKLM";
+    console.log(lowStraight);
+    this.straight =
+      lowStraight ||
+      faces.every((f, index) => f.charCodeAt(0) - first === index);
   }
 }
