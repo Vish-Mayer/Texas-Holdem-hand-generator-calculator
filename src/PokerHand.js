@@ -8,11 +8,19 @@ export class PokerHand {
       .sort();
     const suits = cards.map(card => card[1]).sort();
     this.flush = suits[0] === suits[4];
-    const first = faces[0].charCodeAt(0);
     const lowStraight = faces.join("") === "AJKLM";
-    console.log(lowStraight);
+    faces[0] = lowStraight ? "N" : faces[0];
+    const first = faces[0].charCodeAt(0);
     this.straight =
       lowStraight ||
       faces.every((f, index) => f.charCodeAt(0) - first === index);
+
+    const counts = faces.reduce(function(acc, curr) {
+      return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+    }, {});
+
+    this.pairs = Object.values(counts).reduce(function(acc, curr) {
+      return acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc;
+    }, {});
   }
 }

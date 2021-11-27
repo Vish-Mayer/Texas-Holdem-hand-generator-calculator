@@ -44,4 +44,32 @@ describe("PokerHand", () => {
       }
     });
   });
+
+  describe("pokerhand.straight", () => {
+    it("returns the amount of occurences of a face in a hand. Case -  4 of a kind", () => {
+      let hand = new PokerHand("7H 7C 7D 7S AC");
+      expect(hand.pairs[4]).toEqual(1);
+    });
+
+    it("returns the amount of occurences of a face in a hand. Case - full house", () => {
+      let hand = new PokerHand("7H 2C 7D 7S 2C");
+      expect(hand.pairs[3]).toEqual(1);
+      expect(hand.pairs[2]).toEqual(1);
+    });
+
+    it("returns the amount of occurences of a face in a hand. Case 3 of a kind", () => {
+      let hand = new PokerHand("7H 2C 7D 7S AC");
+      expect(hand.pairs[3]).toEqual(1);
+    });
+
+    it("returns the amount of occurences of a face in a hand. Case 2 pair", () => {
+      let hand = new PokerHand("7H 2C 7D 2S AC");
+      expect(hand.pairs[2]).toEqual(2);
+    });
+
+    it("returns the amount of occurences of a face in a hand. Case - pair", () => {
+      let hand = new PokerHand("7H 2C 7D 9S AC");
+      expect(hand.pairs[2]).toEqual(1);
+    });
+  });
 });
