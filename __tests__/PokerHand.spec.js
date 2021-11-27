@@ -72,4 +72,13 @@ describe("PokerHand", () => {
       expect(hand.pairs[2]).toEqual(1);
     });
   });
+
+  describe("value", () => {
+    it("returns the stringified face values - sorted by pairs, followed by lowest(A) - highest(2)", () => {
+      let hand1 = new PokerHand("AH 2C AD AS AC");
+      let hand2 = new PokerHand("TH 2C 2D AS 3C");
+      expect(hand1.value).toEqual("AAAAM");
+      expect(hand2.value).toEqual("MMAEL");
+    });
+  });
 });
