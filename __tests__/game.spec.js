@@ -30,4 +30,13 @@ describe("Texas Holdem", () => {
       expect(game.table[player].hole.length).toEqual(2);
     }
   });
+
+  it("deals out the community board cards", () => {
+    let game = new TexasHoldem(7);
+    for (let player in game.table) {
+      game.table[player].hole = [];
+    }
+    game.dealBoardCards();
+    expect(game.board.length).toEqual(5);
+  });
 });
