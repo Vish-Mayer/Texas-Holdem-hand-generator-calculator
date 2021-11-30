@@ -1,4 +1,5 @@
-import { Deck } from "../src/Deck";
+import { Deck } from "../src/deck";
+import { mockRandomForEach } from "jest-mock-random";
 
 describe("Deck", () => {
   it("it contains 52 cards", () => {
@@ -26,5 +27,15 @@ describe("Deck", () => {
     for (let card in sampleCards) {
       expect(deck.cards).toContain(sampleCards[card]);
     }
+  });
+
+  describe("dealCard", () => {
+    it("deals the top card from the deck", () => {
+      let deck = new Deck();
+      deck.shuffle();
+      let topCard = deck.cards[deck.cards.length - 1];
+      expect(deck.dealCard()).toEqual(topCard);
+      expect(deck).not.toContain(topCard);
+    });
   });
 });

@@ -1,1 +1,1 @@
-# Texas Holdem Hand Calculator - REST API
+# Texas Holdem hand generator & outcome

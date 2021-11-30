@@ -23,4 +23,23 @@ export class Deck {
       }
     }
   }
+  shuffle() {
+    let cards = this.cards;
+    let currentIndex = cards.length,
+      randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [cards[currentIndex], cards[randomIndex]] = [
+        cards[randomIndex],
+        cards[currentIndex]
+      ];
+    }
+
+    return cards;
+  }
+
+  dealCard() {
+    return this.cards.pop();
+  }
 }
