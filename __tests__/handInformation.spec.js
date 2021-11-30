@@ -5,8 +5,6 @@ describe("handInformation", () => {
     it("returns a ranking of 1", () => {
       let testHands = ["AH KH QH JH TH", "AD KD QD JD TD"];
 
-      console.log(getHandInformation("TD 9D 8D 7D 6D"));
-
       for (let hand in testHands) {
         expect(getHandInformation(testHands[hand])).toMatchObject({
           rank: 1
@@ -24,8 +22,6 @@ describe("handInformation", () => {
   describe("straight flush", () => {
     it("returns a ranking of 1", () => {
       let testHands = ["9H KH QH JH TH", "TD 9D 8D 7D 6D"];
-
-      console.log(getHandInformation("TD 9D 8D 7D 6D"));
 
       for (let hand in testHands) {
         expect(getHandInformation(testHands[hand])).toMatchObject({
