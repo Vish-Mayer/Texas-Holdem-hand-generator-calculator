@@ -28,4 +28,17 @@ describe("Player", () => {
     ];
     expect(player.compare(hands)).toEqual(rankedHands);
   });
+
+  describe("findBestTexasHoldemHand", () => {
+    it("returns the best possible 5 cards using the board and hole cards", () => {
+      let player = new Player("Player1");
+      player.hole = ["AH", "KH"];
+      let board = ["TH", "QH", "6D", "JH", "9H"];
+      expect(player.findBestTexasHoldemHand(board)).toEqual({
+        rank: 1,
+        rankDescription: "Royal Flush",
+        value: "ABCDE"
+      });
+    });
+  });
 });

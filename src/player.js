@@ -1,7 +1,4 @@
 import { getHandInformation } from "./handInformation";
-import { get } from "https";
-import { homedir } from "os";
-
 export class Player {
   constructor(name) {
     this.name = name;
@@ -17,5 +14,26 @@ export class Player {
         }
         return a.rank - b.rank;
       });
+  }
+
+  findBestTexasHoldemHand(board) {
+    const hands = [];
+    hands.push(board);
+    for (let c = 0; c < 2; c += 1) {
+      for (let b = 0; b < 5; b += 1) {
+        const newHand = [...board];
+        newHand[b] = this.hole[c];
+        hands.push(newHand);
+      }
+    }
+    for (let b = 0; b < 4; b += 1) {
+      for (let r = b + 1; r < 5; r += 1) {
+        const newHand = [...board];
+        newHand[b] = this.hole[0];
+        newHand[r] = this.hole[1];
+        hands.push(newHand);
+      }
+    }
+    return this.compare(hands)[0];
   }
 }
