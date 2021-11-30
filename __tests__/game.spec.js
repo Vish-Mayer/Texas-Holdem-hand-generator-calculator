@@ -19,4 +19,15 @@ describe("Texas Holdem", () => {
     expect(game.table.length).toEqual(7);
     expect(Player).toHaveBeenCalledTimes(7);
   });
+
+  it("deals out the hole cards for each player on the table", () => {
+    let game = new TexasHoldem(7);
+    for (let player in game.table) {
+      game.table[player].hole = [];
+    }
+    game.dealHoleCards();
+    for (let player in game.table) {
+      expect(game.table[player].hole.length).toEqual(2);
+    }
+  });
 });

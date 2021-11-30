@@ -3,9 +3,24 @@ import { Player } from "./player";
 
 export class TexasHoldem {
   constructor(numOfPlayers) {
-    const deck = new Deck();
+    this.deck = new Deck();
     this.table = Array.from(new Array(numOfPlayers), () => []);
     this.populateTable();
+  }
+
+  dealRound() {
+    this.deck.shuffle();
+    this.dealHoleCards();
+  }
+
+  dealHoleCards() {
+    for (let player in this.table) {
+      this.table[player].hole.push(this.deck.dealCard());
+    }
+
+    for (let player in this.table) {
+      this.table[player].hole.push(this.deck.dealCard());
+    }
   }
 
   populateTable() {
