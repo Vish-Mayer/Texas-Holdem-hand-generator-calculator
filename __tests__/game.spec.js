@@ -23,20 +23,34 @@ describe("Texas Holdem", () => {
   it("deals out the hole cards for each player on the table", () => {
     let game = new TexasHoldem(7);
     for (let player in game.table) {
-      game.table[player].hole = [];
+      game.table[player].holeCards = [];
     }
     game.dealHoleCards();
     for (let player in game.table) {
-      expect(game.table[player].hole.length).toEqual(2);
+      expect(game.table[player].holeCards.length).toEqual(2);
     }
   });
 
   it("deals out the community board cards", () => {
     let game = new TexasHoldem(7);
     for (let player in game.table) {
-      game.table[player].hole = [];
+      game.table[player].holeCards = [];
     }
     game.dealBoardCards();
     expect(game.board.length).toEqual(5);
+  });
+
+  it("does something", () => {
+    let game = new TexasHoldem(1);
+    for (let player in game.table) {
+      game.table[player].holeCards = [];
+    }
+
+    expect(game.dealRound().board.length).toEqual(5);
+    let round = game.dealRound();
+    round.winner = game.table[0];
+    expect(round.winner).toBeTruthy();
+    expect(round.splitPot).not.toBeTruthy();
+    expect(round.allPlayers).toBeTruthy();
   });
 });
