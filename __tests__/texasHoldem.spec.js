@@ -1,4 +1,4 @@
-import { TexasHoldem } from "../src/game";
+import { TexasHoldem } from "../src/texasHoldem";
 
 describe("TexasHoldem", () => {
   it("is initialized with a new lobby", () => {

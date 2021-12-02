@@ -1,5 +1,5 @@
-import { sortFaceValues } from "./helpers/sortFaceValue";
-import { cardOrder } from "./helpers/cardOrder";
+import { sortFaceValues } from "./helpers/sortFaceValue.js";
+import { cardOrder } from "./helpers/cardOrder.js";
 export const getHandInformation = hand => {
   const cards = hand.split(" ");
   const faces = cards

@@ -8,7 +8,7 @@ export class Table {
     this.deck = new Deck();
   }
 
-  getWinner() {
+  getWinnerTexasHoldem() {
     let seats = this.seats;
     let splitPot = false;
     let winner;

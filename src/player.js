@@ -1,4 +1,4 @@
-import { getHandInformation } from "./handInformation";
+import { getHandInformation } from "./handInformation.js";
 export class Player {
   constructor(name) {
     this.name = name;

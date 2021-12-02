@@ -32,11 +32,12 @@ describe("Table", () => {
     });
   });
 
-  describe("getWinner", () => {
-    it("returns a winner for the table", () => {
+  describe("getWinnerTexasHoldem", () => {
+    it("returns an object containing the name of table, board, winner and seats", () => {
       const table = new Table("name");
-      table.seats.push({ rank: 1, value: "ABCDE" });
-      expect(table.getWinner()).toBeTruthy();
+      expect(Object.keys(table.getWinnerTexasHoldem()).toString()).toBe(
+        "name,board,splitPot,winner,seats"
+      );
     });
   });
 });
