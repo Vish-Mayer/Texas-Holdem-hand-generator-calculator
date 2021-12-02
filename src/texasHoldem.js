@@ -58,7 +58,6 @@ export class TexasHoldem {
     let index = 0;
     if (this.lobby.players.length > 8) {
       for (let player in this.lobby.players) {
-        this.lobby.players[player];
         if (this.tables[index].seats.length > 8) {
           index++;
         }
@@ -70,6 +69,10 @@ export class TexasHoldem {
             this.tables[this.tables.length - 2].seats.pop()
           );
         }
+      }
+    } else {
+      for (let player in this.lobby.players) {
+        this.tables[index].seats.push(this.lobby.players[player]);
       }
     }
   }

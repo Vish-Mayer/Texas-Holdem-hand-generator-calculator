@@ -6,6 +6,11 @@ describe("TexasHoldem", () => {
     expect(game.lobby.players.length).toEqual(10);
   });
 
+  it("allows 2 players on a tab;e", () => {
+    const game = new TexasHoldem(2);
+    expect(game.tables.length).toEqual(1);
+  });
+
   it("creates tables for for the amount of players, each table can have 9 players", () => {
     const game = new TexasHoldem(18);
     expect(game.tables.length).toEqual(2);
