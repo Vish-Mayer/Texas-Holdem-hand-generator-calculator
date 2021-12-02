@@ -1,56 +1,48 @@
 import { TexasHoldem } from "../src/game";
-import { Deck } from "../src/deck";
-import { Player } from "../src/player";
-jest.mock("../src/deck");
-jest.mock("../src/player");
 
-beforeEach(() => {
-  Player.mockClear();
-});
-
-describe("Texas Holdem", () => {
-  it("is initiated with a new deck", () => {
-    new TexasHoldem();
-    expect(Deck).toHaveBeenCalledTimes(1);
+describe("TexasHoldem", () => {
+  it("is initialized with a new lobby", () => {
+    const game = new TexasHoldem(10);
+    expect(game.lobby.players.length).toEqual(10);
   });
 
-  it("it is initialized with a populated table of hardcoded players", () => {
-    let game = new TexasHoldem(7);
-    expect(game.table.length).toEqual(7);
-    expect(Player).toHaveBeenCalledTimes(7);
+  it("creates tables for for the amount of players, each table can have 9 players", () => {
+    const game = new TexasHoldem(18);
+    expect(game.tables.length).toEqual(2);
   });
 
-  it("deals out the hole cards for each player on the table", () => {
-    let game = new TexasHoldem(7);
-    for (let player in game.table) {
-      game.table[player].holeCards = [];
-    }
-    game.dealHoleCards();
-    for (let player in game.table) {
-      expect(game.table[player].holeCards.length).toEqual(2);
-    }
+  it("if the last table created has less then 5 players, game takes players from the previous table to populate the last table", () => {
+    const game = new TexasHoldem(19);
+    expect(game.tables.length).toEqual(3);
+    expect(game.tables[2].seats.length).toEqual(4);
+    expect(game.tables[1].seats.length).toEqual(6);
+    expect(game.tables[0].seats.length).toEqual(9);
   });
 
-  it("deals out the community board cards", () => {
-    let game = new TexasHoldem(7);
-    for (let player in game.table) {
-      game.table[player].holeCards = [];
-    }
-    game.dealBoardCards();
-    expect(game.board.length).toEqual(5);
-  });
+  describe("dealRound", () => {
+    it("deals out hole cards for each player on every table", () => {
+      const game = new TexasHoldem(20);
+      game.dealRound();
+      for (let table in game.tables) {
+        for (let player in game.tables[table].seats) {
+          expect(game.tables[table].seats[player].holeCards.length).toEqual(2);
+        }
+      }
+    });
 
-  it("does something", () => {
-    let game = new TexasHoldem(1);
-    for (let player in game.table) {
-      game.table[player].holeCards = [];
-    }
+    it("deals out 5 board cards for every table table", () => {
+      const game = new TexasHoldem(20);
+      game.dealRound();
+      for (let table in game.tables) {
+        expect(game.tables[table].board.length).toEqual(5);
+      }
+    });
 
-    expect(game.dealRound().board.length).toEqual(5);
-    let round = game.dealRound();
-    round.winner = game.table[0];
-    expect(round.winner).toBeTruthy();
-    expect(round.splitPot).not.toBeTruthy();
-    expect(round.allPlayers).toBeTruthy();
+    it("returns the winner for each table", () => {
+      const game = new TexasHoldem(20);
+      expect(game.dealRound()[0].winner).toBeDefined();
+      expect(game.dealRound()[1].winner).toBeDefined();
+      expect(game.dealRound()[2].winner).toBeDefined();
+    });
   });
 });
