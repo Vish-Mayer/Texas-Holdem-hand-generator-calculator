@@ -1,6 +1,11 @@
 import { getHandInformation } from "../src/handInformation";
 
 describe("handInformation", () => {
+  it("returns an error if the hand length is less than 5", () => {
+    let hand = "7D 7H 7H 8D";
+    expect(() => getHandInformation(hand)).toThrow("5 cards Required");
+  });
+
   describe("royal flush", () => {
     it("returns a ranking of 1", () => {
       let testHands = ["AH KH QH JH TH", "AD KD QD JD TD"];

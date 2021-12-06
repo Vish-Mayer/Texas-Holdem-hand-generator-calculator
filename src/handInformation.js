@@ -2,6 +2,9 @@ import { sortFaceValues } from "./helpers/sortFaceValue.js";
 import { cardOrder } from "./helpers/cardOrder.js";
 export const getHandInformation = hand => {
   const cards = hand.split(" ");
+  if (cards.length < 5) {
+    throw new Error("5 cards Required");
+  }
   const faces = cards
     .map(card => String.fromCharCode([77 - cardOrder.indexOf(card[0])]))
     .sort();
