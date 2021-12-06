@@ -2,7 +2,7 @@ import doenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import { TexasHoldem } from "./texasHoldem.js";
-import { middleware } from "./middleware/middleware.js/index.js";
+import { middleware } from "./middleware/middleware.js";
 
 doenv.config();
 

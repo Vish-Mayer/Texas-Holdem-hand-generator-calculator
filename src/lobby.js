@@ -9,7 +9,7 @@ export class Lobby {
   getPlayers() {
     let number = 1;
     for (let i in this.players) {
-      this.players[i] = new Player(`Player${number}`);
+      this.players[i] = new Player(`Player ${number}`);
       number++;
     }
   }

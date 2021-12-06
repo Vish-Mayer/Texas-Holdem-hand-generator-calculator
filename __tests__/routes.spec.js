@@ -12,13 +12,21 @@ describe("/new-texas-holdem POST", () => {
       expect(response.statusCode).toEqual(200);
     });
 
-    it("returns a the results of a poker table", async () => {
+    it("returns a status of 200, returns the results of each poker table", async () => {
       const response = await request(app)
         .post("/new-texas-holdem")
         .send({
           players: 9
         });
       expect(response.body.results).toBeDefined();
+    });
+
+    it("returns a game of 2 players if a post body is not passed", async () => {
+      const response = await request(app)
+        .post("/new-texas-holdem")
+        .send({});
+      expect(response.statusCode).toEqual(200);
+      expect(response.body.results[0].seats.length).toEqual(2);
     });
   });
 
