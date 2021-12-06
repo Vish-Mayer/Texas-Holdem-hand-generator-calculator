@@ -22,5 +22,15 @@ describe("/new-texas-holdem POST", () => {
     });
   });
 
-  describe("when things go wrong", () => {});
+  describe("when things go wrong", () => {
+    it("returns a 400 status if the amount of players inputed is not a valid integer", async () => {
+      const response = await request(app)
+        .post("/new-texas-holdem")
+        .send({
+          players: "not an interger"
+        });
+      expect(response.statusCode).toEqual(400);
+      expect(response.body.msg).toEqual("Incorrect data type");
+    });
+  });
 });
