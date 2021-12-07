@@ -30,9 +30,9 @@ export class TexasHoldem {
 
     for (let table in tables) {
       tables[table].seats.sort(function(a, b) {
-        if (a.hand.rank === b.hand.rank) {
+        if (a.hand.rank === b.hand.rank)
           return a.hand.value > b.hand.value ? 1 : -1;
-        }
+
         return a.hand.rank - b.hand.rank;
       });
     }

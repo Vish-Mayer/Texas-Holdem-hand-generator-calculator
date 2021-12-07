@@ -9,9 +9,7 @@ export class Player {
     return hands
       .map(hand => getHandInformation(hand.join(" ")))
       .sort(function(a, b) {
-        if (a.rank === b.rank) {
-          return a.value > b.value ? 1 : -1;
-        }
+        if (a.rank === b.rank) return a.value > b.value ? 1 : -1;
         return a.rank - b.rank;
       });
   }

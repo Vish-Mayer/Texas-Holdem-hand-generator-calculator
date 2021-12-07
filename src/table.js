@@ -13,10 +13,10 @@ export class Table {
     let splitPot = false;
     let winner;
     for (let i = 1; i < seats.length; i++) {
-      if (
+      const sameHand =
         seats[0].hand.rank === seats[i].hand.rank &&
-        seats[0].hand.value === seats[i].hand.value
-      ) {
+        seats[0].hand.value === seats[i].hand.value;
+      if (sameHand) {
         splitPot = true;
         winner = [seats[0], seats[i]];
       } else {

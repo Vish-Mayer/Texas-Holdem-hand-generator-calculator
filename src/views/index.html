@@ -1,0 +1,146 @@
+<html>
+<head>
+  <title>Texas Holdem Rest API</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div style="margin:100px;">
+</nav>
+
+<img src="https://t3.ftcdn.net/jpg/02/90/61/32/240_F_290613219_gZNTwm4rSgiZfA0RPRRqnFpKmVZh0M4W.jpg" alt="">
+    <div class="jumbotron"  style="padding:40px;">
+      <h1>Texas Holdem Rest API</h1>
+      <p>Rest API that returns an automatically generated round of Texas Holdem. The request params may include the number of players. If the request does not have a 'players' param, the request produces a default round for one player. If the number of players in a game exceeds nine, the request will create more tables to support the number of players</p>
+    </div>
+
+    <div class="jumbotron"  style="padding:40px;">
+      <h3>Base URL</h3>
+      <p style="background-color: white; padding: 10px; border: 1px solid #D3D3D3; border-radius: 5px;"><u>https://texas-holdem-hand-generator.herokuapp.com/api</u></p>
+      <p>The following example is the endpoint to retrieve information on one randomly dealt hand of Texas Holdem.<p>
+      <p style="background-color: white; padding: 10px; border: 1px solid #D3D3D3; border-radius: 5px;"><u>api/deal-texas-holdem</u></p>
+
+      <pre style="background-color: white; padding: 0px;"><code>
+    {
+      "results": [
+          {
+              "name": "Table 1",
+              "board": [
+                  "2S",
+                  "6S",
+                  "8C",
+                  "5C",
+                  "8S"
+              ],
+              "splitPot": false,
+              "seats": [
+                  {
+                      "name": "Player 1",
+                      "holeCards": [
+                          "8H",
+                          "KS"
+                      ],
+                      "hand": {
+                          "rank": 6,
+                          "rankDescription": "Three Of A Kind",
+                          "value": "GGGBI"
+                      }
+                  }
+              ]
+          }
+      ]
+  }
+      </code></pre>
+
+
+      <p>
+          The following example is the endpoint to retrieve information on multiple hands. Returns the winner from each table and the hands of every player.<p>
+          <p style="background-color: white; padding: 10px; border: 1px solid #D3D3D3; border-radius: 5px;"><u>/api/deal-texas-holdem?players=4</u></p>
+
+          <pre style="background-color: white; padding: 0px;"><code>
+    {
+      "results": [
+          {
+              "name": "Table 1",
+              "board": [
+                  "5C",
+                  "9D",
+                  "QH",
+                  "QS",
+                  "AD"
+              ],
+              "splitPot": false,
+              "winner": {
+                  "name": "Player 3",
+                  "holeCards": [
+                      "5H",
+                      "5S"
+                  ],
+                  "hand": {
+                      "rank": 3,
+                      "rankDescription": "Full House",
+                      "value": "JJJCC"
+                  }
+              },
+              "seats": [
+                  {
+                      "name": "Player 3",
+                      "holeCards": [
+                          "5H",
+                          "5S"
+                      ],
+                      "hand": {
+                          "rank": 3,
+                          "rankDescription": "Full House",
+                          "value": "JJJCC"
+                      }
+                  },
+                  {
+                      "name": "Player 2",
+                      "holeCards": [
+                          "QD",
+                          "3S"
+                      ],
+                      "hand": {
+                          "rank": 6,
+                          "rankDescription": "Three Of A Kind",
+                          "value": "CCCAF"
+                      }
+                  },
+                  {
+                      "name": "Player 4",
+                      "holeCards": [
+                          "KS",
+                          "TS"
+                      ],
+                      "hand": {
+                          "rank": 8,
+                          "rankDescription": "Pair",
+                          "value": "CCABE"
+                      }
+                  },
+                  {
+                      "name": "Player 1",
+                      "holeCards": [
+                          "TC",
+                          "JD"
+                      ],
+                      "hand": {
+                          "rank": 8,
+                          "rankDescription": "Pair",
+                          "value": "CCADE"
+                      }
+                  }
+              ]
+          }
+      ]
+  }
+    
+          
+      </code></pre>
+    </div>
+  </div>
+</body>
+</html>
