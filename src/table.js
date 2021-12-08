@@ -28,7 +28,7 @@ export class Table {
       board: this.board,
       splitPot: splitPot,
       winner: winner,
-      seats: seats
+      sortedPlayers: seats
     };
   }
 }

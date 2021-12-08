@@ -36,7 +36,7 @@ describe("Table", () => {
     it("returns an object containing the name of table, board, winner and seats", () => {
       const table = new Table("name");
       expect(Object.keys(table.getWinnerTexasHoldem()).toString()).toBe(
-        "name,board,splitPot,winner,seats"
+        "name,board,splitPot,winner,sortedPlayers"
       );
     });
   });

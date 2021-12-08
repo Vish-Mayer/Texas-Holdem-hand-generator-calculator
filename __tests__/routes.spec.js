@@ -26,7 +26,7 @@ describe("/api/deal-texas-holdem GET", () => {
         .get("/api/deal-texas-holdem")
         .send({});
       expect(response.statusCode).toEqual(200);
-      expect(response.body.results[0].seats.length).toEqual(1);
+      expect(response.body.results[0].sortedPlayers.length).toEqual(1);
     });
   });
 
