@@ -17,11 +17,7 @@ export class Table {
       const sameHand =
         seats[0].hand.rank === seats[i].hand.rank &&
         seats[0].hand.value === seats[i].hand.value;
-      if (sameHand) {
-        splitPot.push(seats[0], seats[i]);
-      } else {
-        winner.push(seats[0]);
-      }
+      if (sameHand) splitPot.push(seats[0], seats[i]);
 
       seats[0].hand.kicker = seats[0].hand.value
         .split("")
@@ -31,8 +27,7 @@ export class Table {
         .split("")
         .map(val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]);
     }
-
-    console.log(winner);
+    winner.push(seats[0]);
 
     return {
       name: this.name,
