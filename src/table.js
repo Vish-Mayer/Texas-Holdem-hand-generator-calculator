@@ -1,4 +1,5 @@
 import { Deck } from "./deck.js";
+import { cardOrder } from "./helpers/cardOrder.js";
 
 export class Table {
   constructor(name) {
@@ -10,19 +11,29 @@ export class Table {
 
   getWinnerTexasHoldem() {
     let seats = this.seats;
-    let splitPot = false;
-    let winner;
+    let splitPot = [];
+    let winner = [];
     for (let i = 1; i < seats.length; i++) {
       const sameHand =
         seats[0].hand.rank === seats[i].hand.rank &&
         seats[0].hand.value === seats[i].hand.value;
       if (sameHand) {
-        splitPot = true;
-        winner = [seats[0], seats[i]];
+        splitPot.push(seats[0], seats[i]);
       } else {
-        winner = seats[0];
+        winner.push(seats[0]);
       }
+
+      seats[0].hand.kicker = seats[0].hand.value
+        .split("")
+        .map(val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]);
+
+      seats[i].hand.kicker = seats[i].hand.value
+        .split("")
+        .map(val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]);
     }
+
+    console.log(winner);
+
     return {
       name: this.name,
       board: this.board,

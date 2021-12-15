@@ -8,6 +8,7 @@ export const getHandInformation = hand => {
   const faces = cards
     .map(card => String.fromCharCode([77 - cardOrder.indexOf(card[0])]))
     .sort();
+
   const suits = cards.map(card => card[1]).sort();
   const flush = suits[0] === suits[4];
   const lowStraight = faces.join("") === "AJKLM";
