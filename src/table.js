@@ -17,12 +17,12 @@ export class Table {
     for (let i in seats) {
       seats[i].hand.kicker =
         seats[i].hand.value === "JKLMN"
-          ? "5432A"
+          ? "5432A".split("").join("+")
           : (seats[i].hand.kicker = seats[0].hand.value
               .split("")
               .map(
                 val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]
-              ));
+              )).join("+");
     }
 
     for (let i = 1; i < seats.length; i++) {
