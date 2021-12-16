@@ -13,21 +13,25 @@ export class Table {
     let seats = this.seats;
     let splitPot = [];
     let winner = [];
+
+    for (let i in seats) {
+      seats[i].hand.kicker =
+        seats[i].hand.value === "JKLMN"
+          ? "5432A"
+          : (seats[i].hand.kicker = seats[0].hand.value
+              .split("")
+              .map(
+                val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]
+              ));
+    }
+
     for (let i = 1; i < seats.length; i++) {
       const sameHand =
         seats[0].hand.rank === seats[i].hand.rank &&
         seats[0].hand.value === seats[i].hand.value;
-      if (sameHand) splitPot.push(seats[0], seats[i]);
-
-      seats[0].hand.kicker = seats[0].hand.value
-        .split("")
-        .map(val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]);
-
-      seats[i].hand.kicker = seats[i].hand.value
-        .split("")
-        .map(val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]);
+      if (sameHand) splitPot.push(seats[i]);
     }
-    winner.push(seats[0]);
+    splitPot.length > 0 ? splitPot.push(seats[0]) : winner.push(seats[0]);
 
     return {
       name: this.name,

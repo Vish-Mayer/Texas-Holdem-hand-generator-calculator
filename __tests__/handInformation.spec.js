@@ -10,6 +10,8 @@ describe("handInformation", () => {
     it("returns a ranking of 1", () => {
       let testHands = ["AH KH QH JH TH", "AD KD QD JD TD"];
 
+      console.log(getHandInformation("2H 3S 4D AH 5S"));
+
       for (let hand in testHands) {
         expect(getHandInformation(testHands[hand])).toMatchObject({
           rank: 1
