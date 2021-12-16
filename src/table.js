@@ -17,7 +17,7 @@ export class Table {
     for (let i in seats) {
       seats[i].hand.kicker =
         seats[i].hand.value === "JKLMN"
-          ? "5432A".split("")
+          ? "5432A".split("").join("+")
           : (seats[i].hand.kicker = seats[0].hand.value
               .split("")
               .map(
