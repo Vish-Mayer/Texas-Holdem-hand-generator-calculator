@@ -1,5 +1,6 @@
 import { Deck } from "./deck.js";
 import { cardOrder } from "./helpers/cardOrder.js";
+import { getKicker } from "./helpers/getKicker.js";
 
 export class Table {
   constructor(name) {
@@ -9,21 +10,19 @@ export class Table {
     this.deck = new Deck();
   }
 
+  getKickers() {
+    let seats = this.seats;
+    for (let i in seats) {
+      seats[i].hand.kicker = getKicker(seats[i].hand.value);
+    }
+  }
+
   getWinnerTexasHoldem() {
     let seats = this.seats;
     let splitPot = [];
     let winner = [];
 
-    for (let i in seats) {
-      seats[i].hand.kicker =
-        seats[i].hand.value === "JKLMN"
-          ? "5432A".split("").join("+")
-          : (seats[i].hand.kicker = seats[0].hand.value
-              .split("")
-              .map(
-                val => cardOrder.split("").reverse()[val.charCodeAt(0) - 65]
-              )).join("+");
-    }
+    this.getKickers();
 
     for (let i = 1; i < seats.length; i++) {
       const sameHand =
